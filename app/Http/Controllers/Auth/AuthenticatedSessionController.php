@@ -24,10 +24,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Comprobamos email y contraseña
         $request->authenticate();
 
+        // Recargamos la sessión
         $request->session()->regenerate();
 
+        // Redirect
+        if ($request->user()->role === 'hr') {
+            // Si es un HR, mandamos a dashboard especial
+            return redirect()->intended(route('hr.dashboard', absolute: false));
+        }
+
+        // Si es un usuario normal, mandamos a dashboard estandaro
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

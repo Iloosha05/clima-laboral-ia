@@ -28,12 +28,12 @@
 
             <div class="flex gap-4">
                 {{-- Botón Login --}}
-                <a href="#" class="bg-white text-[#000000] border border-[#000000] px-8 py-3 font-medium hover:bg-black transition text-center hover:text-white min-w-[120px]">
+                <a href="{{ route('login') }}" class="bg-white text-[#000000] border border-[#000000] px-8 py-3 font-medium hover:bg-black transition text-center hover:text-white min-w-[120px]">
                     Login
                 </a>
                 
                 {{-- Botón Registro --}}
-                <a href="#" class="bg-white text-[#000000] border border-[#000000] px-8 py-3 font-medium hover:bg-black transition text-center hover:text-white min-w-[120px]">
+                <a href="{{ route('register') }}" class="bg-white text-[#000000] border border-[#000000] px-8 py-3 font-medium hover:bg-black transition text-center hover:text-white min-w-[120px]">
                     Registro
                 </a>
             </div>

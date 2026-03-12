@@ -49,8 +49,29 @@ class User extends Authenticatable
         ];
     }
 
-    public function isHr(): bool{
+    // Comprobar, si el usuario es HR
+    public function isHr()
+    {
         return $this->role === 'hr';
+    }
+
+    // Encuestas que ha creado un HR
+    public function createdSurveys()
+    {
+        return $this->hasMany(Survey::class, 'created_by');
+    }
+
+    // Encuestas que ha superado un empleado
+    public function completedSurveys()
+    {
+        return $this->belongsToMany(Survey::class, 'survey_user')
+                    ->withPivot('completed_at')
+                    ->withTimestamps();
+    }
+
+    public function moodEntries()
+    {
+        return $this->hasMany(MoodEntry::class);
     }
 
 }
