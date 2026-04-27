@@ -2,8 +2,7 @@
 
 @section('content')
 {{-- Contenedor principal --}}
-<div class="bg-[#FFE5E5] min-w-1200 min-h-[calc(100vh-160px)] flex items-center justify-center py-12 px-4">
-    
+<div class="bg-[#FFE5E5] min-h-[calc(100vh-160px)] flex items-center justify-center py-12 px-4">
     {{-- Tarjeta blanca --}}
     <div class="bg-white w-full max-w-6xl shadow-lg flex flex-col md:flex-row overflow-hidden">
         

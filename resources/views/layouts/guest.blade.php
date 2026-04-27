@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ config('app.name', 'Clima Laboral') }}</title>
+
+    {{-- Fuentes --}}
     <style>
         @font-face {
             font-family: 'NT Somic';
@@ -14,30 +19,23 @@
         }
     </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- Vite --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['NT Somic', 'sans-serif'],
-                    },
-                    colors: {
-                        brandRed: '#F00000',
-                        brandPink: '#FFE5E5',
-                    }
-                }
-            }
-        }
-    </script>
     @livewireStyles
 </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
+<body class="font-sans text-gray-900 antialiased bg-[#F9FAFB]">
+    
+    <div class="absolute top-0 left-0 w-full z-50">
+        @include('partials.navigation')
+    </div>
+
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-20 sm:pt-0">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-xl border-t-4 border-[#F00000] sm:rounded-none">
+            {{ $slot }}
         </div>
-    </body>
+    </div>
+
+    @livewireScripts
+</body>
 </html>

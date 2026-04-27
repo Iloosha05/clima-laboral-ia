@@ -28,7 +28,7 @@ class Question extends Model
         return $this->belongsTo(Survey::class);
     }
 
-    // Cada pregunta puede tener varias respuestas
+    //cada pregunta puede tener varias respuestas
     public function answers()
     {
         return $this->hasMany(Answer::class);

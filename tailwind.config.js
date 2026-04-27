@@ -1,5 +1,4 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
-import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -7,15 +6,20 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/js/**/*.js',
     ],
-
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['NT Somic', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                brandRed: '#F00000',
+                brandPink: '#FFE5E5',
+            }
         },
     },
-
-    plugins: [forms],
+    plugins: [
+        // require('@tailwindcss/forms'), 
+    ],
 };

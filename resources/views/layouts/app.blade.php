@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clima Laboral</title>
+
+    {{-- Fuentes --}}
     <style>
         @font-face {
             font-family: 'NT Somic';
@@ -14,30 +19,12 @@
         }
     </style>
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['NT Somic', 'sans-serif'],
-                    },
-                    colors: {
-                        brandRed: '#F00000',
-                        brandPink: '#FFE5E5',
-                    }
-                }
-            }
-        }
-    </script>
-    <meta charset="UTF-8">
-    <title>Clima Laboral</title>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     @livewireStyles
 </head>
 
-<body class="flex flex-col min-h-screen bg-[#FFFFFF]">
+<body class="flex flex-col min-h-screen bg-[#FFFFFF] font-sans">
     
     {{-- Header --}}
     @include('partials.navigation')
@@ -50,9 +37,6 @@
     {{-- Footer --}}
     @include('partials.footer')
 
+    @livewireScripts
 </body>
-
 </html>
-
-
-

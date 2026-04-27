@@ -10,13 +10,19 @@ class Answer extends Model
     use HasFactory;
 
     protected $fillable = [
+        'submission_id',
         'question_id', 
         'answer_value'
     ];
 
-    // Una respuesta pertenece a una pregunta concreta
+    //una respuesta pertenece a una pregunta concreta
     public function question()
     {
         return $this->belongsTo(Question::class);
+    }
+
+    public function submission()
+    {
+        return $this->belongsTo(Submission::class);
     }
 }
