@@ -28,7 +28,7 @@
         </div>
 
         {{-- Menu tipo escritorio --}}
-        <nav class="!hidden md:!flex gap-8 text-lg font-medium items-center uppercase tracking-wider">
+        <nav class="hidden md:flex gap-8 text-lg font-medium items-center uppercase tracking-wider">
             @foreach($links as $link)
                 <a href="{{ $link['url'] }}" 
                    wire:navigate
@@ -52,7 +52,7 @@
         </nav>
 
         {{-- Botón hamburgesa --}}
-        <div class="!flex md:!hidden items-center z-50">
+        <div class="flex md:hidden items-center z-50">
             <button @click="open = !open" class="text-[#000000] hover:text-[#F00000] focus:outline-none transition-colors mt-1">
                 <svg class="h-8 w-8" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                     {{-- Usamos x-show de Alpine en lugar de clases de Tailwind para evitar conflictos --}}

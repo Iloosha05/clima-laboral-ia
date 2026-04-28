@@ -2,9 +2,9 @@
 
 @section('content')
 
-<x-guest-layout>
+<div class="min-h-[80vh] flex flex-col justify-center py-12 px-4">
     {{-- Contenedor principal de la tarjeta de registro --}}
-    <div class="bg-white shadow-xl border-t-4 border-[#F00000] p-8 max-w-md mx-auto mt-10">
+    <div class="w-full bg-white shadow-xl border-t-4 border-[#F00000] p-8 max-w-md mx-auto">
         
         {{-- Encabezado --}}
         <div class="mb-8 text-center">
@@ -65,6 +65,6 @@
             </div>
         </form>
     </div>
-</x-guest-layout>
+</div>
 
 @endsection

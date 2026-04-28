@@ -9,19 +9,17 @@
     <style>
         @font-face {
             font-family: 'NT Somic';
-            src: url('/resources/fonts/NTSomic-Regular.ttf') format('ttf');
+            src: url('/fonts/NTSomic-Regular.ttf') format('ttf');
             font-weight: 400;
         }
         @font-face {
             font-family: 'NT Somic';
-            src: url('/resources/fonts/NTSomic-Bold.ttf') format('ttf');
+            src: url('/fonts/NTSomic-Bold.ttf') format('ttf');
             font-weight: 700;
         }
     </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    @livewireStyles
 </head>
 
 <body class="flex flex-col min-h-screen bg-[#FFFFFF] font-sans">
@@ -36,7 +34,5 @@
 
     {{-- Footer --}}
     @include('partials.footer')
-
-    @livewireScripts
 </body>
 </html>
