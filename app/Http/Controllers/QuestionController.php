@@ -38,4 +38,34 @@ class QuestionController extends Controller
         //recargar la página con mensaje de éxito
         return back()->with('success', '¡Pregunta añadida correctamente!');
     }
+
+    public function edit(Question $question)
+    {
+        return view('hr.questions.edit', compact('question'));
+    }
+
+    public function update(Request $request, Question $question)
+    {
+        $request->validate([
+            'text' => 'required|string|max:500', 
+            'type' => 'required|in:text,textarea,scale,boolean',
+            'is_required' => 'boolean',
+        ]);
+
+        $question->update([
+            'question_text' => $request->text, 
+            'type' => $request->type,
+            'is_required' => $request->has('is_required'),
+        ]);
+
+        return redirect()->route('hr.questions.create', $question->survey_id)->with('success', 'Pregunta actualizada correctamente');
+    }
+
+    public function destroy(Question $question)
+    {
+        $survey_id = $question->survey_id;
+        $question->delete();
+
+        return redirect()->route('hr.questions.create', $survey_id)->with('success', 'Pregunta eliminada correctamente');
+    }
 }

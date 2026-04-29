@@ -153,4 +153,26 @@ class HrController extends Controller
             return response()->json(['summary' => 'Error de conexión con la IA: ' . $e->getMessage()], 500);
         }
     }
+
+    public function edit(Survey $survey)
+    {
+        return view('hr.surveys.edit', compact('survey'));
+    }
+
+    public function update(Request $request, Survey $survey)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'deadline' => 'nullable|date|after_or_equal:today',
+        ]);
+
+        $survey->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+        ]);
+
+        return redirect()->route('hr.dashboard')->with('success', 'Encuesta actualizada correctamente');
+    }
 }

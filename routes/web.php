@@ -26,13 +26,18 @@ Route::middleware('auth')->group(function () {
 */
 Route::middleware(['auth', 'hr'])->group(function () {
     Route::get('/hr/dashboard', [HrController::class, 'index'])->name('hr.dashboard');
+
     Route::get('/hr/surveys/create', [HrController::class, 'create'])->name('hr.surveys.create');
     Route::post('/hr/surveys', [HrController::class, 'store'])->name('hr.surveys.store');
+    Route::get('/hr/surveys/{survey}/edit', [HrController::class, 'edit'])->name('hr.surveys.edit');
+    Route::put('/hr/surveys/{survey}', [HrController::class, 'update'])->name('hr.surveys.update');
+    Route::delete('/hr/surveys/{survey}', [App\Http\Controllers\HrController::class, 'destroy'])->name('hr.surveys.destroy');
 
     Route::get('/hr/surveys/{survey}/questions', [\App\Http\Controllers\QuestionController::class, 'create'])->name('hr.questions.create');
     Route::post('/hr/surveys/{survey}/questions', [\App\Http\Controllers\QuestionController::class, 'store'])->name('hr.questions.store');
-
-    Route::delete('/hr/surveys/{survey}', [App\Http\Controllers\HrController::class, 'destroy'])->name('hr.surveys.destroy');
+    Route::get('/hr/questions/{question}/edit', [\App\Http\Controllers\QuestionController::class, 'edit'])->name('hr.questions.edit');
+    Route::put('/hr/questions/{question}', [\App\Http\Controllers\QuestionController::class, 'update'])->name('hr.questions.update');
+    Route::delete('/hr/questions/{question}', [\App\Http\Controllers\QuestionController::class, 'destroy'])->name('hr.questions.destroy');
 
     Route::get('/hr/surveys/{survey}/results', [HrController::class, 'results'])->name('hr.surveys.results');
 });

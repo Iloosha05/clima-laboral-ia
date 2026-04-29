@@ -99,23 +99,45 @@
                             <div class="flex-1">
                                 <h3 class="text-lg font-bold text-[#000000]">{{ $question->question_text }}</h3>
                                 
-                                <div class="flex items-center gap-4 mt-3 pt-3 border-t border-gray-100">
-                                    <span class="bg-gray-100 text-gray-600 px-2 py-1 text-xs font-bold uppercase tracking-wider">
-                                        {{ $typeLabels[$question->type] ?? 'Desconocido' }}
-                                    </span>
+                                <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <span class="bg-gray-100 text-gray-600 px-2 py-1 text-xs font-bold uppercase tracking-wider">
+                                            {{ $typeLabels[$question->type] ?? 'Desconocido' }}
+                                        </span>
+                                        
+                                        @if($question->is_required)
+                                            <span class="text-[#F00000] text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                </svg>
+                                                Obligatoria
+                                            </span>
+                                        @else
+                                            <span class="text-gray-400 text-xs font-bold uppercase tracking-wider flex items-center gap-1">
+                                                Opcional
+                                            </span>
+                                        @endif
+                                    </div>
                                     
-                                    @if($question->is_required)
-                                        <span class="text-[#F00000] text-xs font-bold uppercase tracking-wider flex items-center gap-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                    <div class="flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <a href="{{ route('hr.questions.edit', $question) }}" class="text-[#000000] hover:text-[#F00000] text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                             </svg>
-                                            Obligatoria
-                                        </span>
-                                    @else
-                                        <span class="text-gray-400 text-xs font-bold uppercase tracking-wider flex items-center gap-1">
-                                            Opcional
-                                        </span>
-                                    @endif
+                                            Editar
+                                        </a>
+                                        
+                                        <form action="{{ route('hr.questions.destroy', $question) }}" method="POST" class="m-0 p-0" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta pregunta?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-[#F00000] hover:text-[#000000] text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                </svg>
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
