@@ -121,8 +121,13 @@ class HrController extends Controller
 
         //preparamos un prompt
         $respuestasUnidas = implode(" | ", $answers);
-        $prompt = "Actúa como un experto en Recursos Humanos. Tu ÚNICA tarea es escribir un resumen global de máximo 3 líneas sobre el clima laboral basándote en las siguientes respuestas. REGLAS ESTRICTAS: NO analices las respuestas una por una. NO hagas listas ni viñetas. Solo escribe un párrafo corto y fluido que resuma el sentimiento general y mencione las quejas o puntos positivos más repetidos. Respuestas a analizar: " . $respuestasUnidas;
+        $prompt = "Eres un analista experto en Recursos Humanos. Analiza las siguientes respuestas anónimas de empleados. 
+            REGLAS ESTRICTAS:
+            1. Solo básate en la información proporcionada en las respuestas. NO inventes datos.
+            2. Si las respuestas son texto sin sentido (como letras repetidas 'qqq', 'asd'), gibberish, o son demasiado cortas para tener significado, DEBES responder ÚNICAMENTE con la siguiente frase: 'No hay datos suficientes o coherentes para generar un análisis fiable.'
 
+            Respuestas a analizar:
+            " . $respuestasUnidas;
         //enviamos la petición a Groq
         try {
             $response = \Illuminate\Support\Facades\Http::withHeaders([
