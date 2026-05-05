@@ -31,7 +31,7 @@
 
     @if($totalSubmissions == 0)
         <div class="bg-white border-l-4 border-[#000000] p-10 shadow-md">
-            <p class="text-gray-600 font-medium text-lg text-center italic">Aún no se han recibido respuestas para esta encuesta.</p>
+            <p class="text-gray-600 font-medium text-lg text-center italic">Aun no se han recibido respuestas para esta encuesta.</p>
         </div>
     @else
         <div class="space-y-12">
@@ -117,7 +117,7 @@ function analyzeConIA(questionId, btnElement) {
     })
     .then(response => response.json())
     .then(data => {
-        resultBox.innerHTML = '<div class="font-medium mb-3 uppercase tracking-widest text-[10px] text-blue-600">Informe Generado por IA</div><div class="text-gray-800 font-normal">' + data.summary + '</div>';
+        resultBox.innerHTML = '<div class="font-medium mb-3 uppercase tracking-widest text-[10px] text-blue-600">Informe Generado por IA</div><div class="text-gray-800 font-normal whitespace-pre-line">' + data.summary + '</div>';
     })
     .catch(error => {
         resultBox.innerHTML = '<span class="text-red-500 font-medium text-xs uppercase">Error en el análisis.</span>';

@@ -121,13 +121,16 @@ class HrController extends Controller
 
         //preparamos un prompt
         $respuestasUnidas = implode(" | ", $answers);
-        $prompt = "Eres un analista experto en Recursos Humanos. Analiza las siguientes respuestas anónimas de empleados. 
-            REGLAS ESTRICTAS:
-            1. Solo básate en la información proporcionada en las respuestas. NO inventes datos.
-            2. Si las respuestas son texto sin sentido (como letras repetidas 'qqq', 'asd'), gibberish, o son demasiado cortas para tener significado, DEBES responder ÚNICAMENTE con la siguiente frase: 'No hay datos suficientes o coherentes para generar un análisis fiable.'
+        $prompt = "Eres un analista de RRHH. Analiza estas respuestas anónimas y devuelve el resultado EXACTAMENTE con esta estructura (respeta los saltos de línea y NO incluyas ninguna frase de introducción como 'A continuación' o 'Aquí tienes'):
 
-            Respuestas a analizar:
-            " . $respuestasUnidas;
+        PUNTOS CLAVE:
+        • [Tema principal 1]: [Breve resumen]
+        • [Tema principal 2]: [Breve resumen]
+
+        CONSEJO DE RRHH:
+        [Escribe aquí una recomendación accionable y profesional para solucionar estos problemas detectados].
+
+        Respuestas a analizar: " . $respuestasUnidas;
         //enviamos la petición a Groq
         try {
             $response = \Illuminate\Support\Facades\Http::withHeaders([

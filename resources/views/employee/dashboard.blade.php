@@ -50,7 +50,7 @@
                         </h4>
                         
                         <p class="text-gray-600 text-sm line-clamp-3">
-                            {{ $survey->description ?? 'Ayúdanos a mejorar el clima laboral completando esta breve encuesta.' }}
+                            {{ $survey->description ?? 'Ayudanos a mejorar el clima laboral completando esta breve encuesta.' }}
                         </p>
                     </div>
                     

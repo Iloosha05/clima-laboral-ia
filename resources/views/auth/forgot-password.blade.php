@@ -13,7 +13,11 @@
             </p>
         </div>
 
-        <x-auth-session-status class="mb-6 text-[#F00000] font-bold text-center bg-[#FFE5E5] p-3 border border-[#F00000]" :status="session('status')" />
+        @if (session('status') == 'We have emailed your password reset link.')
+            <div class="mb-6 text-green-700 font-bold text-center bg-green-50 p-3 border border-green-400">
+                Te hemos enviado el enlace de recuperación a tu correo.
+            </div>
+        @endif
 
         <form method="POST" action="{{ route('password.email') }}" class="space-y-6">
             @csrf

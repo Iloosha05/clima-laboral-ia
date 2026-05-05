@@ -22,7 +22,7 @@
             <div>
                 <label for="name" class="block text-sm font-bold text-[#000000] uppercase tracking-wide mb-2">Nombre Completo</label>
                 <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name"
-                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm">
+                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm py-3 px-4 transition duration-300">
                 <x-input-error :messages="$errors->get('name')" class="mt-2 text-[#F00000] text-xs font-bold" />
             </div>
 
@@ -30,7 +30,7 @@
             <div>
                 <label for="email" class="block text-sm font-bold text-[#000000] uppercase tracking-wide mb-2">Correo Electrónico</label>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="username"
-                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm">
+                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm py-3 px-4 transition duration-300">
                 <x-input-error :messages="$errors->get('email')" class="mt-2 text-[#F00000] text-xs font-bold" />
             </div>
 
@@ -38,7 +38,7 @@
             <div>
                 <label for="password" class="block text-sm font-bold text-[#000000] uppercase tracking-wide mb-2">Contraseña</label>
                 <input id="password" type="password" name="password" required autocomplete="new-password"
-                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm">
+                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm py-3 px-4 transition duration-300">
                 <x-input-error :messages="$errors->get('password')" class="mt-2 text-[#F00000] text-xs font-bold" />
             </div>
 
@@ -46,7 +46,7 @@
             <div>
                 <label for="password_confirmation" class="block text-sm font-bold text-[#000000] uppercase tracking-wide mb-2">Confirmar Contraseña</label>
                 <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password"
-                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm">
+                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm py-3 px-4 transition duration-300">
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-[#F00000] text-xs font-bold" />
             </div>
 

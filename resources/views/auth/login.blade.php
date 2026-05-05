@@ -25,7 +25,7 @@
             <div>
                 <label for="email" class="block text-sm font-bold text-[#000000] uppercase tracking-wide mb-2">Correo Electrónico</label>
                 <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="username"
-                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm">
+                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm py-3 px-4 transition duration-300">
                 <x-input-error :messages="$errors->get('email')" class="mt-2 text-[#F00000] text-xs font-bold" />
             </div>
 
@@ -33,7 +33,7 @@
             <div>
                 <label for="password" class="block text-sm font-bold text-[#000000] uppercase tracking-wide mb-2">Contraseña</label>
                 <input id="password" type="password" name="password" required autocomplete="current-password"
-                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm">
+                       class="w-full border-gray-300 focus:border-[#F00000] focus:ring-[#F00000] rounded-none shadow-sm py-3 px-4 transition duration-300">
                 <x-input-error :messages="$errors->get('password')" class="mt-2 text-[#F00000] text-xs font-bold" />
             </div>
 

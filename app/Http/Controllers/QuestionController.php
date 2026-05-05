@@ -22,17 +22,17 @@ class QuestionController extends Controller
     {
         //validación
         $request->validate([
-        'text' => 'required|string|max:500', 
-        'type' => 'required|in:text,textarea,scale,boolean',
-        'is_required' => 'boolean',
-    ]);
+            'text' => 'required|string|max:500', 
+            'type' => 'required|in:text,textarea,scale,boolean',
+            'is_required' => 'boolean',
+        ]);
 
         //creación de la pregunta vinculada a la encuesta
         $survey->questions()->create([
             // ИСПРАВЛЕНО: берем данные из $request->text
             'question_text' => $request->text, 
             'type' => $request->type,
-            'is_required' => $request->has('is_required'), // true si el checkbox está marcado
+            'is_required' => $request->boolean('is_required'), // true si el checkbox está marcado
         ]);
 
         //recargar la página con mensaje de éxito
@@ -55,7 +55,7 @@ class QuestionController extends Controller
         $question->update([
             'question_text' => $request->text, 
             'type' => $request->type,
-            'is_required' => $request->has('is_required'),
+            'is_required' => $request->boolean('is_required'),
         ]);
 
         return redirect()->route('hr.questions.create', $question->survey_id)->with('success', 'Pregunta actualizada correctamente');
