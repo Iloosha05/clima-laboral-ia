@@ -29,7 +29,6 @@ class QuestionController extends Controller
 
         //creación de la pregunta vinculada a la encuesta
         $survey->questions()->create([
-            // ИСПРАВЛЕНО: берем данные из $request->text
             'question_text' => $request->text, 
             'type' => $request->type,
             'is_required' => $request->boolean('is_required'), // true si el checkbox está marcado
