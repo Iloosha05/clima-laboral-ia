@@ -40,6 +40,8 @@ class EmployeeController extends Controller
     //guarda las respuestas en la base de datos
     public function store(Request $request, Survey $survey)
     {
+        $survey->load('questions');
+
         //validar que se ha enviado al menos una respuesta
         $request->validate([
             'answers' => 'required|array',
@@ -47,9 +49,12 @@ class EmployeeController extends Controller
             'answers.required' => 'Debes responder al menos a una pregunta para enviar la encuesta.'
         ]);
 
+        $validQuestionIds = $survey->questions->pluck('id')->all();
+
         //validación manual: comprobar que todas las obligatorias están respondidas
         foreach ($survey->questions as $question) {
-            if ($question->is_required && empty($request->answers[$question->id])) {
+            $answer = $request->answers[$question->id] ?? null;
+            if ($question->is_required && trim((string) $answer) === '') {
                 return back()->with('error', 'Por favor, responde a todas las preguntas obligatorias. Te faltó: "' . $question->text . '"');
             }
         }
@@ -59,12 +64,19 @@ class EmployeeController extends Controller
 
         //guardar cada respuesta en la base de datos
         foreach ($request->answers as $question_id => $answer_value) {
-            if (!empty($answer_value)) {
-                $submission->answers()->create([
-                    'question_id' => $question_id,
-                    'answer_value' => $answer_value,
-                ]);
+            $questionId = (int) $question_id;
+            if (!in_array($questionId, $validQuestionIds, true)) {
+                continue;
             }
+
+            if (trim((string) $answer_value) === '') {
+                continue;
+            }
+
+            $submission->answers()->create([
+                'question_id' => $questionId,
+                'answer_value' => $answer_value,
+            ]);
         }
 
         //registrar que este usuario ya completó la encuesta (para que desaparezca del panel)

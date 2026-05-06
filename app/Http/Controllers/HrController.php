@@ -149,16 +149,16 @@ class HrController extends Controller
 
             //si la API devuelve un error oficial, lo mostramos en pantalla
             if (isset($result['error'])) {
-                return response()->json(['summary' => 'Error de Groq: ' . $result['error']['message']]);
+                return response()->json(['summary' => 'Error de Groq. Intenta de nuevo más tarde.'], 500);
             }
 
-            //si por alguna razón la estructura es rara, imprimimos todo para depurar
-            $summary = $result['choices'][0]['message']['content'] ?? 'Error desconocido: ' . json_encode($result);
+            //si por alguna razón la estructura es rara, usamos un mensaje genérico
+            $summary = $result['choices'][0]['message']['content'] ?? 'Error desconocido al procesar la respuesta de IA.';
 
             return response()->json(['summary' => $summary]);
 
         } catch (\Exception $e) {
-            return response()->json(['summary' => 'Error de conexión con la IA: ' . $e->getMessage()], 500);
+            return response()->json(['summary' => 'Error de conexión con la IA. Intenta de nuevo más tarde.'], 500);
         }
     }
 

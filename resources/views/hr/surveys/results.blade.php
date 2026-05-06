@@ -117,7 +117,11 @@ function analyzeConIA(questionId, btnElement) {
     })
     .then(response => response.json())
     .then(data => {
-        resultBox.innerHTML = '<div class="font-medium mb-3 uppercase tracking-widest text-[10px] text-blue-600">Informe Generado por IA</div><div class="text-gray-800 font-normal whitespace-pre-line">' + data.summary + '</div>';
+        resultBox.innerHTML = '<div class="font-medium mb-3 uppercase tracking-widest text-[10px] text-blue-600">Informe Generado por IA</div>';
+        const summaryElement = document.createElement('div');
+        summaryElement.className = 'text-gray-800 font-normal whitespace-pre-line';
+        summaryElement.textContent = data.summary;
+        resultBox.appendChild(summaryElement);
     })
     .catch(error => {
         resultBox.innerHTML = '<span class="text-red-500 font-medium text-xs uppercase">Error en el análisis.</span>';

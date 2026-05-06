@@ -9,10 +9,6 @@ Route::get('/', function () {
     return view('start');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -38,6 +34,7 @@ Route::middleware(['auth', 'hr'])->group(function () {
     Route::get('/hr/questions/{question}/edit', [\App\Http\Controllers\QuestionController::class, 'edit'])->name('hr.questions.edit');
     Route::put('/hr/questions/{question}', [\App\Http\Controllers\QuestionController::class, 'update'])->name('hr.questions.update');
     Route::delete('/hr/questions/{question}', [\App\Http\Controllers\QuestionController::class, 'destroy'])->name('hr.questions.destroy');
+    Route::post('/hr/questions/{question}/analyze', [App\Http\Controllers\HrController::class, 'analyzeAnswersWithAi'])->name('hr.questions.analyze');
 
     Route::get('/hr/surveys/{survey}/results', [HrController::class, 'results'])->name('hr.surveys.results');
 });
@@ -55,11 +52,8 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 //rutas para panel de empleados
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('dashboard');
     Route::get('/surveys/{survey}/take', [\App\Http\Controllers\EmployeeController::class, 'show'])->name('employee.surveys.show');
     Route::post('/surveys/{survey}/take', [\App\Http\Controllers\EmployeeController::class, 'store'])->name('employee.surveys.store');
 });
-
-//rutas para los nalizis con IA
-Route::post('/hr/questions/{question}/analyze', [App\Http\Controllers\HrController::class, 'analyzeAnswersWithAi'])->name('hr.questions.analyze');
